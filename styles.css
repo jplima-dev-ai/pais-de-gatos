@@ -199,6 +199,24 @@ h2 { max-width: 690px; margin-bottom: 22px; font-size: clamp(2rem, 4vw, 3.4rem);
 .ficha-gato dt:first-child { margin-top: 0; }
 .ficha-gato dd { margin: 2px 0 0; font-size: 1.1rem; }
 
+.botao-apagar {
+  margin-top: 24px;
+  padding: 10px 16px;
+  border: 2px solid var(--terracota-escuro);
+  border-radius: 5px;
+  color: var(--terracota-escuro);
+  background: transparent;
+  font: bold 0.85rem Arial, sans-serif;
+  cursor: pointer;
+}
+
+.botao-apagar:hover { color: var(--branco); background: var(--terracota-escuro); }
+
+.botao-apagar:focus-visible {
+  outline: 3px solid var(--dourado);
+  outline-offset: 3px;
+}
+
 @media (max-width: 760px) {
   .formulario-perfil { grid-template-columns: 1fr; padding: 24px; }
   .botao-formulario { align-self: auto; }
