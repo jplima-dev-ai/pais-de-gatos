@@ -1,12 +1,204 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mães de Gatos</title>
+    <meta name="description" content="Um cantinho acolhedor para mulheres que vivem o amor pelos seus gatos.">
+    <title>Mães de Gatos | Amor que ronrona</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <a class="link-pular" href="#conteudo">
+      Pular para o conteúdo principal
+    </a>
+
+    <header class="cabecalho">
+      <div class="container cabecalho-conteudo">
+        <a class="marca" href="#inicio" aria-label="Mães de Gatos, voltar ao início">
+          <span class="marca-icone" aria-hidden="true">♡</span>
+          <span>Mães de Gatos</span>
+        </a>
+
+        <nav class="navegacao-principal" aria-label="Navegação principal">
+          <ul>
+            <li><a href="#sobre">Nosso amor</a></li>
+            <li><a href="#temas">Cantinho felino</a></li>
+            <li><a href="#rodape">Sobre o projeto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero" id="inicio" aria-labelledby="titulo-principal">
+        <div class="container hero-conteudo">
+          <div class="hero-texto">
+            <p class="etiqueta">Um cantinho para quem ama de verdade</p>
+            <h1 id="titulo-principal">
+              Amor que cabe no colo e <span>ronrona no coração.</span>
+            </h1>
+            <p class="hero-descricao">
+              Ser mãe de gato é colecionar miados, pelos na roupa e momentos que fazem qualquer dia ficar mais bonito.
+            </p>
+            <a class="botao" href="#temas">Explorar nosso cantinho</a>
+          </div>
+
+          <div class="hero-ilustracao" aria-hidden="true">
+            <span class="coracao coracao-um" aria-hidden="true">♡</span>
+            <span class="coracao coracao-dois" aria-hidden="true">♡</span>
+            <div class="gato" aria-hidden="true">
+              <span class="orelha orelha-esquerda"></span>
+              <span class="orelha orelha-direita"></span>
+              <span class="olho olho-esquerdo"></span>
+              <span class="olho olho-direito"></span>
+              <span class="nariz"></span>
+              <span class="bigode bigode-esquerdo"></span>
+              <span class="bigode bigode-direito"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao sobre" id="sobre" aria-labelledby="titulo-sobre">
+        <div class="container sobre-conteudo">
+          <div class="numero-secao" aria-hidden="true">01</div>
+          <div>
+            <p class="etiqueta">Uma conexão especial</p>
+            <h2 id="titulo-sobre">Eles chegam de mansinho e viram parte de tudo.</h2>
+            <p>
+              Entre uma soneca no sofá e um olhar curioso pela casa, os gatos ensinam que carinho também mora nos pequenos gestos. Este é um espaço para celebrar essa amizade cheia de personalidade, respeito e muito amor.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao temas" id="temas" aria-labelledby="titulo-temas">
+        <div class="container">
+          <div class="cabecalho-secao">
+            <div>
+              <p class="etiqueta">Nosso universo</p>
+              <h2 id="titulo-temas">Cada gato tem seu jeitinho de amar.</h2>
+            </div>
+            <p class="texto-secao">
+              Três motivos para deixar o ronronar fazer parte da rotina.
+            </p>
+          </div>
+
+          <div class="cartoes">
+            <article class="cartao cartao-rotina">
+              <div class="cartao-icone" aria-hidden="true">☼</div>
+              <p class="cartao-numero">01 / Cuidado</p>
+              <h3>Rotina com carinho</h3>
+              <p>
+                Comida, água fresca e um cantinho seguro: cuidado também é uma forma silenciosa de dizer “eu amo você”.
+              </p>
+              <a href="#rodape">Conheça o projeto <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="cartao cartao-carinho">
+              <div class="cartao-icone" aria-hidden="true">♡</div>
+              <p class="cartao-numero">02 / Afeto</p>
+              <h3>Presença que acalma</h3>
+              <p>
+                Um ronronar por perto, uma cabeça encostada na mão e a certeza de que nunca estamos sozinhas.
+              </p>
+              <a href="#sobre">Sentir essa conexão <span aria-hidden="true">→</span></a>
+            </article>
+
+            <article class="cartao cartao-diversao">
+              <div class="cartao-icone" aria-hidden="true">✦</div>
+              <p class="cartao-numero">03 / Alegria</p>
+              <h3>Bagunça divertida</h3>
+              <p>
+                Brinquedos espalhados, corridas pela sala e histórias engraçadas que só quem é mãe de gato entende.
+              </p>
+              <a href="#inicio">Voltar ao começo <span aria-hidden="true">↑</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao perfil" id="perfil" aria-labelledby="titulo-perfil">
+        <div class="container perfil-conteudo">
+          <div class="cabecalho-secao">
+            <div>
+              <p class="etiqueta">Um retrato cheio de carinho</p>
+              <h2 id="titulo-perfil">Perfil do Meu Gato</h2>
+            </div>
+            <p class="texto-secao">
+              Conte um pouquinho sobre quem deixa seus dias mais felizes.
+            </p>
+          </div>
+
+          <form id="formulario-perfil" class="formulario-perfil" novalidate>
+            <div class="campo">
+              <label for="nome-gato">Nome do gato</label>
+              <input id="nome-gato" name="nome" type="text" autocomplete="off" required aria-describedby="erro-nome-gato">
+              <p class="mensagem-erro" id="erro-nome-gato"></p>
+            </div>
+
+            <div class="campo">
+              <label for="idade-gato">Idade em anos</label>
+              <input id="idade-gato" name="idade" type="number" min="0" max="40" step="1" inputmode="numeric" required aria-describedby="erro-idade-gato">
+              <p class="mensagem-erro" id="erro-idade-gato"></p>
+            </div>
+
+            <div class="campo">
+              <label for="temperamento-gato">Temperamento</label>
+              <select id="temperamento-gato" name="temperamento" required aria-describedby="erro-temperamento-gato">
+                <option value="">Selecione uma opção</option>
+                <option value="Carinhoso">Carinhoso</option>
+                <option value="Brincalhão">Brincalhão</option>
+                <option value="Tranquilo">Tranquilo</option>
+                <option value="Curioso">Curioso</option>
+                <option value="Independente">Independente</option>
+              </select>
+              <p class="mensagem-erro" id="erro-temperamento-gato"></p>
+            </div>
+
+            <div class="campo">
+              <label for="atividade-gato">Atividade favorita</label>
+              <select id="atividade-gato" name="atividade" required aria-describedby="erro-atividade-gato">
+                <option value="">Selecione uma opção</option>
+                <option value="Dormir">Dormir</option>
+                <option value="Brincar">Brincar</option>
+                <option value="Explorar a casa">Explorar a casa</option>
+                <option value="Observar a janela">Observar a janela</option>
+                <option value="Ganhar carinho">Ganhar carinho</option>
+              </select>
+              <p class="mensagem-erro" id="erro-atividade-gato"></p>
+            </div>
+
+            <div class="campo campo-apelido">
+              <label for="apelido-gato">Apelido <span>(opcional)</span></label>
+              <input id="apelido-gato" name="apelido" type="text" autocomplete="off" aria-describedby="erro-apelido-gato">
+              <p class="mensagem-erro" id="erro-apelido-gato"></p>
+            </div>
+
+            <button class="botao botao-formulario" type="submit">Criar perfil</button>
+          </form>
+
+          <p class="mensagem-status" id="mensagem-formulario" role="status" aria-live="polite"></p>
+
+          <div class="resultado-perfil" id="resultado-perfil"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape" id="rodape">
+      <div class="container rodape-conteudo">
+        <div>
+          <p class="marca rodape-marca">
+            <span class="marca-icone" aria-hidden="true">♡</span>
+            Mães de Gatos
+          </p>
+          <p>
+            Feito com carinho para celebrar os grandes amores em pequenos bigodes.
+          </p>
+        </div>
+        <p class="rodape-final">Amor, respeito e muitos ronrons.</p>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
 </html>
