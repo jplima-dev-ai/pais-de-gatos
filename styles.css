@@ -11,6 +11,9 @@
 }
 
 * { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--creme); color: var(--vinho); font-family: Georgia, "Times New Roman", serif; line-height: 1.6; }
 a { color: inherit; }
@@ -157,7 +160,32 @@ h2 { max-width: 690px; margin-bottom: 22px; font-size: clamp(2rem, 4vw, 3.4rem);
   font: 0.9rem Arial, sans-serif;
 }
 
-.botao-formulario { align-self: end; justify-self: start; border: 0; cursor: pointer; }
+.acoes-formulario {
+  display: flex;
+  align-items: center;
+  align-self: end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.botao-formulario { border: 0; cursor: pointer; }
+
+.botao-cancelar {
+  padding: 10px 0;
+  border: 0;
+  color: var(--terracota-escuro);
+  background: transparent;
+  font: bold 0.85rem Arial, sans-serif;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.botao-cancelar:hover { color: var(--terracota); }
+
+.botao-cancelar:focus-visible {
+  outline: 3px solid var(--dourado);
+  outline-offset: 3px;
+}
 
 .mensagem-status {
   min-height: 1.6em;
@@ -199,8 +227,15 @@ h2 { max-width: 690px; margin-bottom: 22px; font-size: clamp(2rem, 4vw, 3.4rem);
 .ficha-gato dt:first-child { margin-top: 0; }
 .ficha-gato dd { margin: 2px 0 0; font-size: 1.1rem; }
 
-.botao-apagar {
+.acoes-ficha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
   margin-top: 24px;
+}
+
+.botao-apagar {
   padding: 10px 16px;
   border: 2px solid var(--terracota-escuro);
   border-radius: 5px;
@@ -219,5 +254,5 @@ h2 { max-width: 690px; margin-bottom: 22px; font-size: clamp(2rem, 4vw, 3.4rem);
 
 @media (max-width: 760px) {
   .formulario-perfil { grid-template-columns: 1fr; padding: 24px; }
-  .botao-formulario { align-self: auto; }
+  .acoes-formulario { align-self: auto; }
 }

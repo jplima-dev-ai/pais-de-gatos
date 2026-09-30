@@ -1,6 +1,8 @@
 const CHAVE_PERFIL = 'maesDeGatos.perfil';
 
 const formulario = document.querySelector('#formulario-perfil');
+const botaoPrincipal = formulario.querySelector('[type="submit"]');
+const botaoCancelar = document.querySelector('#botao-cancelar');
 const mensagemStatus = document.querySelector('#mensagem-formulario');
 const resultadoPerfil = document.querySelector('#resultado-perfil');
 
@@ -19,6 +21,8 @@ const mensagensErro = {
   atividade: document.querySelector('#erro-atividade-gato'),
   apelido: document.querySelector('#erro-apelido-gato'),
 };
+
+let modoEdicao = false;
 
 function limparMensagens() {
   mensagemStatus.textContent = '';
@@ -146,6 +150,94 @@ function criarItemFicha(rotulo, valor) {
   return item;
 }
 
+function criarFicha(dados, moverFoco = true) {
+  resultadoPerfil.replaceChildren();
+  resultadoPerfil.hidden = false;
+
+  const ficha = document.createElement('article');
+  const titulo = document.createElement('h3');
+  const lista = document.createElement('dl');
+  const acoes = document.createElement('div');
+  const botaoEditar = document.createElement('button');
+  const botaoApagar = document.createElement('button');
+
+  ficha.className = 'ficha-gato';
+  titulo.tabIndex = -1;
+  titulo.textContent = `Perfil de ${dados.nome}`;
+
+  lista.append(
+    criarItemFicha('Idade', `${dados.idade} ${dados.idade === 1 ? 'ano' : 'anos'}`),
+    criarItemFicha('Temperamento', dados.temperamento),
+    criarItemFicha('Atividade favorita', dados.atividade),
+  );
+
+  if (dados.apelido) {
+    lista.append(criarItemFicha('Apelido', dados.apelido));
+  }
+
+  acoes.className = 'acoes-ficha';
+
+  botaoEditar.className = 'botao botao-editar';
+  botaoEditar.type = 'button';
+  botaoEditar.textContent = 'Editar perfil';
+  botaoEditar.addEventListener('click', () => iniciarEdicao(dados));
+
+  botaoApagar.className = 'botao-apagar';
+  botaoApagar.type = 'button';
+  botaoApagar.textContent = 'Apagar perfil';
+  botaoApagar.addEventListener('click', apagarPerfil);
+
+  acoes.append(botaoEditar, botaoApagar);
+  ficha.append(titulo, lista, acoes);
+  resultadoPerfil.append(ficha);
+
+  if (moverFoco) {
+    titulo.focus();
+  }
+}
+
+function mostrarEstadoSemPerfil() {
+  modoEdicao = false;
+  formulario.hidden = false;
+  resultadoPerfil.hidden = true;
+  botaoPrincipal.textContent = 'Criar perfil';
+  botaoCancelar.hidden = true;
+}
+
+function mostrarEstadoComPerfil(dados, moverFoco = false) {
+  modoEdicao = false;
+  formulario.hidden = true;
+  botaoCancelar.hidden = true;
+  criarFicha(dados, moverFoco);
+}
+
+function iniciarEdicao(dados) {
+  modoEdicao = true;
+  preencherFormulario(dados);
+  limparMensagens();
+  formulario.hidden = false;
+  resultadoPerfil.hidden = true;
+  botaoPrincipal.textContent = 'Salvar alterações';
+  botaoCancelar.hidden = false;
+  campos.nome.focus();
+}
+
+function cancelarEdicao() {
+  const dados = lerPerfilSalvo();
+
+  if (!dados) {
+    mostrarEstadoSemPerfil();
+    campos.nome.focus();
+    return;
+  }
+
+  preencherFormulario(dados);
+  limparMensagens();
+  mostrarEstadoComPerfil(dados);
+  mensagemStatus.textContent = 'Edição cancelada.';
+  resultadoPerfil.querySelector('.botao-editar').focus();
+}
+
 function apagarPerfil() {
   const confirmou = window.confirm(
     'Tem certeza de que deseja apagar o perfil deste gato? Essa ação remove os dados salvos neste navegador.',
@@ -165,44 +257,9 @@ function apagarPerfil() {
   formulario.reset();
   limparMensagens();
   resultadoPerfil.replaceChildren();
-  formulario.querySelector('[type="submit"]').textContent = 'Criar perfil';
+  mostrarEstadoSemPerfil();
   mensagemStatus.textContent = 'Perfil apagado com sucesso.';
   campos.nome.focus();
-}
-
-function criarFicha(dados, moverFoco = true) {
-  resultadoPerfil.replaceChildren();
-
-  const ficha = document.createElement('article');
-  const titulo = document.createElement('h3');
-  const lista = document.createElement('dl');
-  const botaoApagar = document.createElement('button');
-
-  ficha.className = 'ficha-gato';
-  titulo.tabIndex = -1;
-  titulo.textContent = `Perfil de ${dados.nome}`;
-
-  lista.append(
-    criarItemFicha('Idade', `${dados.idade} ${dados.idade === 1 ? 'ano' : 'anos'}`),
-    criarItemFicha('Temperamento', dados.temperamento),
-    criarItemFicha('Atividade favorita', dados.atividade),
-  );
-
-  if (dados.apelido) {
-    lista.append(criarItemFicha('Apelido', dados.apelido));
-  }
-
-  botaoApagar.className = 'botao-apagar';
-  botaoApagar.type = 'button';
-  botaoApagar.textContent = 'Apagar perfil';
-  botaoApagar.addEventListener('click', apagarPerfil);
-
-  ficha.append(titulo, lista, botaoApagar);
-  resultadoPerfil.append(ficha);
-
-  if (moverFoco) {
-    titulo.focus();
-  }
 }
 
 formulario.addEventListener('submit', (evento) => {
@@ -227,15 +284,18 @@ formulario.addEventListener('submit', (evento) => {
     return;
   }
 
-  formulario.querySelector('[type="submit"]').textContent = 'Atualizar perfil';
-  mensagemStatus.textContent = 'Perfil salvo com sucesso.';
-  criarFicha(dados);
+  const mensagem = modoEdicao ? 'Perfil atualizado com sucesso.' : 'Perfil criado com sucesso.';
+  mensagemStatus.textContent = mensagem;
+  mostrarEstadoComPerfil(dados, true);
 });
+
+botaoCancelar.addEventListener('click', cancelarEdicao);
 
 const perfilSalvo = lerPerfilSalvo();
 
 if (perfilSalvo) {
   preencherFormulario(perfilSalvo);
-  formulario.querySelector('[type="submit"]').textContent = 'Atualizar perfil';
-  criarFicha(perfilSalvo, false);
+  mostrarEstadoComPerfil(perfilSalvo);
+} else {
+  mostrarEstadoSemPerfil();
 }
