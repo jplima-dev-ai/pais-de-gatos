@@ -213,6 +213,68 @@
           <div class="resultado-perfil" id="resultado-perfil"></div>
         </div>
       </section>
+
+      <section class="secao agenda" id="agenda" aria-labelledby="titulo-agenda">
+        <div class="container agenda-conteudo">
+          <div class="cabecalho-secao">
+            <div>
+              <p class="etiqueta">Pequenos cuidados, muito amor</p>
+              <h2 id="titulo-agenda">Agenda de Cuidados</h2>
+            </div>
+            <p class="texto-secao">
+              Organize as tarefas que fazem parte da rotina do seu gato.
+            </p>
+          </div>
+
+          <button class="botao botao-nova-tarefa" id="adicionar-tarefa" type="button">
+            Adicionar nova tarefa
+          </button>
+
+          <form id="formulario-tarefa" class="formulario-tarefa" novalidate hidden>
+            <div class="campo">
+              <label for="titulo-tarefa">Título da tarefa</label>
+              <p class="ajuda-campo" id="ajuda-titulo-tarefa">Exemplo: Trocar a areia</p>
+              <input id="titulo-tarefa" name="titulo" type="text" maxlength="100" required aria-describedby="ajuda-titulo-tarefa erro-titulo-tarefa">
+              <p class="mensagem-erro" id="erro-titulo-tarefa"></p>
+            </div>
+
+            <div class="campo">
+              <label for="data-tarefa">Data <span>(opcional)</span></label>
+              <input id="data-tarefa" name="data" type="date" aria-describedby="erro-data-tarefa">
+              <p class="mensagem-erro" id="erro-data-tarefa"></p>
+            </div>
+
+            <div class="campo">
+              <label for="categoria-tarefa">Categoria</label>
+              <select id="categoria-tarefa" name="categoria" required aria-describedby="erro-categoria-tarefa">
+                <option value="">Selecione uma categoria</option>
+                <option value="alimentação">Alimentação</option>
+                <option value="higiene">Higiene</option>
+                <option value="saúde">Saúde</option>
+                <option value="brincadeira">Brincadeira</option>
+                <option value="outros">Outros</option>
+              </select>
+              <p class="mensagem-erro" id="erro-categoria-tarefa"></p>
+            </div>
+
+            <div class="acoes-formulario">
+              <button class="botao botao-formulario" id="botao-tarefa" type="submit">Criar tarefa</button>
+              <button class="botao-cancelar" id="cancelar-edicao-tarefa" type="button" hidden>Cancelar edição</button>
+            </div>
+          </form>
+
+          <p class="mensagem-status" id="mensagem-agenda" role="status" aria-live="polite"></p>
+
+          <div class="filtros-agenda" aria-label="Filtrar tarefas">
+            <button class="filtro ativo" type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+            <button class="filtro" type="button" data-filtro="pendentes" aria-pressed="false">Pendentes</button>
+            <button class="filtro" type="button" data-filtro="concluidas" aria-pressed="false">Concluídas</button>
+          </div>
+
+          <p class="estado-vazio" id="estado-vazio"></p>
+          <ul class="lista-tarefas" id="lista-tarefas" aria-label="Lista de tarefas de cuidado"></ul>
+        </div>
+      </section>
     </main>
 
     <footer class="rodape" id="rodape">
@@ -225,6 +287,7 @@
           <p>
             Feito com carinho para celebrar os grandes amores em pequenos bigodes.
           </p>
+          <p class="assinatura">Desenvolvido por Kael J Productions</p>
         </div>
         <p class="rodape-final">Amor, respeito e muitos ronrons.</p>
       </div>
