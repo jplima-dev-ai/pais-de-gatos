@@ -275,6 +275,52 @@
           <ul class="lista-tarefas" id="lista-tarefas" aria-label="Lista de tarefas de cuidado"></ul>
         </div>
       </section>
+
+      <section class="secao calculadora" id="calculadora" aria-labelledby="titulo-calculadora">
+        <div class="container calculadora-conteudo">
+          <div class="cabecalho-secao">
+            <div>
+              <p class="etiqueta">Uma continha cheia de carinho</p>
+              <h2 id="titulo-calculadora">Calculadora de Idade Felina</h2>
+            </div>
+            <p class="texto-secao">
+              Descubra uma estimativa da idade do seu gato em anos humanos.
+            </p>
+          </div>
+
+          <form id="formulario-idade-felina" class="formulario-calculadora" novalidate>
+            <fieldset class="grupo-idade">
+              <legend>Informe a idade aproximada do seu gato.</legend>
+              <p class="ajuda-campo">Se não souber os dias, deixe em zero.</p>
+
+              <div class="controles-idade">
+                <div class="campo">
+                  <label for="idade-anos">Anos</label>
+                  <select id="idade-anos" name="anos" aria-describedby="erro-idade-felina"></select>
+                </div>
+
+                <div class="campo">
+                  <label for="idade-meses">Meses</label>
+                  <select id="idade-meses" name="meses" aria-describedby="erro-idade-felina"></select>
+                </div>
+
+                <div class="campo">
+                  <label for="idade-dias">Dias</label>
+                  <select id="idade-dias" name="dias" aria-describedby="erro-idade-felina"></select>
+                </div>
+              </div>
+
+              <p class="mensagem-erro" id="erro-idade-felina"></p>
+            </fieldset>
+
+            <button class="botao" type="submit">Calcular idade</button>
+          </form>
+
+          <p class="mensagem-status" id="mensagem-calculadora" role="status" aria-live="polite"></p>
+
+          <div class="resultado-calculadora" id="resultado-idade-felina" hidden></div>
+        </div>
+      </section>
     </main>
 
     <footer class="rodape" id="rodape">

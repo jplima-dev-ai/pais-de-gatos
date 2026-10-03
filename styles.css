@@ -407,3 +407,69 @@ h2 { max-width: 690px; margin-bottom: 22px; font-size: clamp(2rem, 4vw, 3.4rem);
   .tarefa { grid-template-columns: 1fr; }
   .acoes-tarefa { justify-content: flex-start; }
 }
+
+.calculadora { background: var(--creme); }
+.calculadora-conteudo { max-width: 960px; }
+
+.formulario-calculadora {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 8px;
+  background: var(--branco);
+  box-shadow: var(--sombra);
+}
+
+.formulario-calculadora .botao { align-self: end; }
+
+.grupo-idade {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-idade legend {
+  margin-bottom: 8px;
+  color: var(--vinho);
+  font-weight: bold;
+}
+
+.controles-idade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.resultado-calculadora {
+  max-width: 620px;
+  margin-top: 24px;
+  padding: 28px;
+  border-left: 6px solid var(--terracota);
+  border-radius: 8px;
+  background: var(--creme-escuro);
+  box-shadow: var(--sombra);
+}
+
+.resultado-calculadora h3 {
+  margin-bottom: 16px;
+  color: var(--terracota-escuro);
+  font-size: 1.8rem;
+  font-weight: normal;
+}
+
+.resultado-calculadora p { margin-bottom: 10px; }
+.resultado-calculadora p:last-child { margin-bottom: 0; }
+
+.aviso-calculadora {
+  margin-top: 20px;
+  color: var(--texto-suave);
+  font: 0.9rem Arial, sans-serif;
+}
+
+@media (max-width: 760px) {
+  .formulario-calculadora { grid-template-columns: 1fr; padding: 24px; }
+  .formulario-calculadora .botao { justify-self: start; }
+}
