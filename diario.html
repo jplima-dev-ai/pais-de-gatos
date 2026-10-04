@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Diário do Gato: registre observações e acontecimentos da rotina do seu gato.">
+  <title>Diário do Gato | Pais de Gatos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="cabecalho">
+    <div class="container cabecalho-conteudo">
+      <a class="marca" href="index.html" aria-label="Pais de Gatos, voltar ao início"><span class="marca-icone" aria-hidden="true">♡</span><span>Pais de Gatos</span></a>
+      <nav class="navegacao-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a data-page="inicio" href="index.html">Início</a></li>
+          <li><a data-page="perfil" href="perfil.html">Meu gato</a></li>
+          <li><a data-page="agenda" href="agenda.html">Agenda</a></li>
+          <li><a data-page="calculadora" href="calculadora.html">Idade felina</a></li>
+          <li><a data-page="quiz" href="quiz.html">Quiz</a></li>
+          <li><a data-page="dicas" href="dicas.html">Dicas</a></li>
+          <li><a data-page="diario" href="diario.html" aria-current="page">Diário</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="secao diario" id="diario" aria-labelledby="titulo-diario">
+      <div class="container diario-conteudo">
+        <div class="cabecalho-secao">
+          <div>
+            <p class="etiqueta">Memórias e observações</p>
+            <h1 id="titulo-diario">Diário do Gato</h1>
+          </div>
+          <p class="texto-secao">Registre acontecimentos passados e acompanhe os pequenos detalhes da rotina do seu gato.</p>
+        </div>
+
+        <p class="aviso-diario">O diário ajuda a registrar observações, mas não substitui avaliação veterinária. Seus registros ficam apenas neste navegador.</p>
+
+        <button class="botao botao-novo-registro" id="adicionar-registro" type="button">Adicionar novo registro</button>
+
+        <form id="formulario-diario" class="formulario-diario" novalidate hidden>
+          <div class="campo">
+            <label for="data-registro">Data</label>
+            <input id="data-registro" name="data" type="date" required aria-describedby="erro-data-registro">
+            <p class="mensagem-erro" id="erro-data-registro"></p>
+          </div>
+
+          <div class="campo">
+            <label for="categoria-registro">Categoria</label>
+            <select id="categoria-registro" name="categoria" required aria-describedby="erro-categoria-registro">
+              <option value="">Selecione uma categoria</option>
+              <option value="Rotina">Rotina</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Comportamento">Comportamento</option>
+              <option value="Medicação">Medicação</option>
+              <option value="Veterinário">Veterinário</option>
+              <option value="Momento especial">Momento especial</option>
+            </select>
+            <p class="mensagem-erro" id="erro-categoria-registro"></p>
+          </div>
+
+          <div class="campo">
+            <label for="humor-registro">Humor</label>
+            <select id="humor-registro" name="humor" required aria-describedby="erro-humor-registro">
+              <option value="">Selecione o humor</option>
+              <option>Tranquilo</option><option>Carinhoso</option><option>Brincalhão</option><option>Curioso</option><option>Assustado</option><option>Irritado</option><option>Mais quieto que o normal</option>
+            </select>
+            <p class="mensagem-erro" id="erro-humor-registro"></p>
+          </div>
+
+          <div class="campo">
+            <label for="energia-registro">Nível de energia</label>
+            <select id="energia-registro" name="energia" required aria-describedby="erro-energia-registro">
+              <option value="">Selecione o nível de energia</option><option>Baixa</option><option>Normal</option><option>Alta</option>
+            </select>
+            <p class="mensagem-erro" id="erro-energia-registro"></p>
+          </div>
+
+          <div class="campo">
+            <label for="alimentacao-registro">Alimentação</label>
+            <select id="alimentacao-registro" name="alimentacao" required aria-describedby="erro-alimentacao-registro">
+              <option value="">Selecione a alimentação</option><option>Comeu normalmente</option><option>Comeu menos que o normal</option><option>Comeu mais que o normal</option><option>Não comeu</option><option>Não observado</option>
+            </select>
+            <p class="mensagem-erro" id="erro-alimentacao-registro"></p>
+          </div>
+
+          <div class="campo">
+            <label for="caixa-registro">Uso da caixa de areia</label>
+            <select id="caixa-registro" name="caixaAreia" required aria-describedby="erro-caixa-registro">
+              <option value="">Selecione uma opção</option><option>Normal</option><option>Diferente do habitual</option><option>Não usou</option><option>Não observado</option>
+            </select>
+            <p class="mensagem-erro" id="erro-caixa-registro"></p>
+          </div>
+
+          <div class="campo campo-observacao-diario">
+            <label for="observacao-registro">Observação <span>(opcional)</span></label>
+            <p class="ajuda-campo" id="ajuda-observacao-registro">Opcional. Use este espaço para acrescentar algum detalhe que queira lembrar. Limite: 1.000 caracteres.</p>
+            <textarea id="observacao-registro" name="observacao" maxlength="1000" rows="5" aria-describedby="ajuda-observacao-registro erro-observacao-registro"></textarea>
+            <p class="mensagem-erro" id="erro-observacao-registro"></p>
+          </div>
+
+          <div class="acoes-formulario">
+            <button class="botao botao-formulario" id="botao-diario" type="submit">Salvar registro</button>
+            <button class="botao-cancelar" id="cancelar-edicao-diario" type="button" hidden>Cancelar edição</button>
+          </div>
+        </form>
+
+        <p class="mensagem-status" id="mensagem-diario" role="status" aria-live="polite"></p>
+
+        <div class="filtros-diario" aria-label="Filtros do diário">
+          <div class="campo">
+            <label for="filtro-categoria-diario">Categoria</label>
+            <select id="filtro-categoria-diario">
+              <option value="todas">Todas as categorias</option>
+              <option>Rotina</option><option>Saúde</option><option>Alimentação</option><option>Comportamento</option><option>Medicação</option><option>Veterinário</option><option>Momento especial</option>
+            </select>
+          </div>
+          <div class="campo campo-pesquisa-diario">
+            <label for="pesquisa-diario">Pesquisar nas observações</label>
+            <input id="pesquisa-diario" type="search">
+          </div>
+          <button class="botao-cancelar" id="limpar-filtros-diario" type="button">Limpar filtros</button>
+        </div>
+
+        <p class="estado-vazio" id="estado-vazio-diario"></p>
+        <ol class="lista-registros-diario" id="lista-registros-diario" aria-label="Histórico do Diário do Gato"></ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape" id="rodape"><div class="container rodape-conteudo"><div><p class="marca rodape-marca"><span class="marca-icone" aria-hidden="true">♡</span>Pais de Gatos</p><p>Feito com carinho para celebrar os grandes amores em pequenos bigodes.</p><p class="assinatura">Desenvolvido por Kael J Productions</p></div><p class="rodape-final">Amor, respeito e muitos ronrons.</p></div></footer>
+  <script src="scripts/diario.js" defer></script>
+</body>
+</html>
