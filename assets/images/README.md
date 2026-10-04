@@ -1,6 +1,6 @@
 # Organização das imagens
 
-Esta pasta reúne as imagens do projeto Mães de Gatos. As pastas estão separadas por finalidade para facilitar a manutenção, a acessibilidade e o crescimento do site.
+Esta pasta reúne as imagens do projeto Pais de Gatos. As pastas estão separadas por finalidade para facilitar a manutenção, a acessibilidade e o crescimento do site.
 
 ## Pastas
 
@@ -18,7 +18,7 @@ Fotos e ilustrações de gatos usadas em cartões, perfis, cuidados, brincadeira
 
 ### `stories/`
 
-Imagens relacionadas a histórias, depoimentos, artigos, adoção e experiências de mães de gatos.
+Imagens relacionadas a histórias, depoimentos, artigos, adoção e experiências de pais de gatos.
 
 ### `icons/`
 

@@ -49,23 +49,23 @@ const perguntasQuiz = [
 
 const perfisQuiz = {
   protetora: {
-    nome: 'Mãe Protetora',
-    descricao: 'Você tem radar para qualquer detalhe e transforma cuidado em um abraço invisível.',
+    nome: 'Protetor de Bigodes',
+    descricao: 'Você tem radar para qualquer detalhe e transforma cuidado em proteção para cada bigode.',
     recomendacao: 'Sua missão divertida: prepare um cantinho seguro e faça uma ronda de carinho.',
   },
   brincalhona: {
-    nome: 'Mãe Brincalhona',
-    descricao: 'Com você, qualquer caixa vira brinquedo e qualquer corredor pode virar uma grande aventura.',
+    nome: 'Parceiro de Brincadeiras',
+    descricao: 'Com você, qualquer caixa vira brinquedo e qualquer corredor pode virar uma grande aventura compartilhada.',
     recomendacao: 'Sua missão divertida: reserve alguns minutos para uma brincadeira escolhida pelo seu gato.',
   },
   observadora: {
-    nome: 'Mãe Observadora',
-    descricao: 'Você percebe os pequenos sinais e conhece cada olhar, miado e movimento do seu companheiro.',
+    nome: 'Observador Felino',
+    descricao: 'Você percebe os pequenos sinais e conhece cada olhar, miado e movimento do seu companheiro felino.',
     recomendacao: 'Sua missão divertida: observe hoje qual é o lugar favorito dele para descansar.',
   },
   aconchego: {
-    nome: 'Mãe Aconchego',
-    descricao: 'Você entende que os melhores momentos podem ser silenciosos, macios e cheios de ronronar.',
+    nome: 'Companheiro de Aconchego',
+    descricao: 'Você entende que os melhores momentos podem ser silenciosos, macios e cheios de ronronar compartilhado.',
     recomendacao: 'Sua missão divertida: ofereça um cantinho confortável e deixe o carinho acontecer no ritmo dele.',
   },
 };
