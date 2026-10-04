@@ -321,6 +321,71 @@
           <div class="resultado-calculadora" id="resultado-idade-felina" hidden></div>
         </div>
       </section>
+
+      <section class="secao quiz" id="quiz" aria-labelledby="titulo-quiz">
+        <div class="container quiz-conteudo">
+          <div class="cabecalho-secao">
+            <div>
+              <p class="etiqueta">Uma brincadeira cheia de personalidade</p>
+              <h2 id="titulo-quiz">Que tipo de mãe de gato você é?</h2>
+            </div>
+            <p class="texto-secao">
+              Responda cinco perguntas e descubra seu perfil felino.
+            </p>
+          </div>
+
+          <p class="quiz-aviso-inicial">
+            Este quiz é apenas uma experiência de entretenimento, não um teste científico ou psicológico.
+          </p>
+
+          <div class="progresso-quiz" id="progresso-quiz">Pergunta 1 de 5</div>
+
+          <form id="formulario-quiz" class="formulario-quiz" novalidate>
+            <fieldset id="pergunta-quiz" aria-labelledby="legenda-pergunta" aria-describedby="texto-pergunta erro-quiz">
+              <legend id="legenda-pergunta">Pergunta 1 de 5</legend>
+              <p id="texto-pergunta" class="texto-pergunta" tabindex="-1"></p>
+              <div id="alternativas-quiz" class="alternativas-quiz"></div>
+              <p class="mensagem-erro" id="erro-quiz"></p>
+            </fieldset>
+
+            <div class="acoes-quiz">
+              <button class="botao-secundario-quiz" id="voltar-quiz" type="button" hidden>Voltar</button>
+              <button class="botao" id="proxima-quiz" type="submit">Próxima pergunta</button>
+            </div>
+          </form>
+
+          <p class="mensagem-status" id="mensagem-quiz" role="status" aria-live="polite"></p>
+          <div class="resultado-quiz" id="resultado-quiz" hidden></div>
+        </div>
+      </section>
+
+      <section class="secao dicas" id="dicas" aria-labelledby="titulo-dicas">
+        <div class="container dicas-conteudo">
+          <div class="cabecalho-secao">
+            <div>
+              <p class="etiqueta">Pequenos cuidados, muito amor</p>
+              <h2 id="titulo-dicas">Dicas e Favoritos</h2>
+            </div>
+            <p class="texto-secao">
+              Encontre ideias simples para deixar a rotina do seu gato ainda mais especial.
+            </p>
+          </div>
+
+          <div class="filtros-dicas" aria-label="Filtrar dicas">
+            <button class="filtro-dica ativo" type="button" data-filtro-dica="todas" aria-pressed="true">Todas</button>
+            <button class="filtro-dica" type="button" data-filtro-dica="alimentação" aria-pressed="false">Alimentação</button>
+            <button class="filtro-dica" type="button" data-filtro-dica="higiene" aria-pressed="false">Higiene</button>
+            <button class="filtro-dica" type="button" data-filtro-dica="saúde" aria-pressed="false">Saúde</button>
+            <button class="filtro-dica" type="button" data-filtro-dica="brincadeira" aria-pressed="false">Brincadeira</button>
+            <button class="filtro-dica" type="button" data-filtro-dica="bem-estar" aria-pressed="false">Bem-estar</button>
+            <button class="filtro-dica" id="filtro-favoritas" type="button" data-filtro-dica="favoritas" aria-pressed="false">Favoritas</button>
+          </div>
+
+          <p class="mensagem-status" id="mensagem-dicas" role="status" aria-live="polite"></p>
+          <p class="estado-vazio-dicas" id="estado-vazio-dicas"></p>
+          <ul class="lista-dicas" id="lista-dicas" aria-label="Lista de dicas para mães de gatos"></ul>
+        </div>
+      </section>
     </main>
 
     <footer class="rodape" id="rodape">
