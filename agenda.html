@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Mães de Gatos: um espaço acolhedor e acessível para quem ama gatos."><title>Agenda de Cuidados | Mães de Gatos</title><link rel="stylesheet" href="styles.css"></head><body><a class="link-pular" href="#conteudo">Pular para o conteúdo principal</a><header class="cabecalho"><div class="container cabecalho-conteudo"><a class="marca" href="index.html" aria-label="Mães de Gatos, voltar ao início"><span class="marca-icone" aria-hidden="true">♡</span><span>Mães de Gatos</span></a><nav class="navegacao-principal" aria-label="Navegação principal"><ul><li><a data-page="inicio" href="index.html">Início</a></li><li><a data-page="perfil" href="perfil.html">Meu gato</a></li><li><a data-page="agenda" href="agenda.html" aria-current="page">Agenda</a></li><li><a data-page="calculadora" href="calculadora.html">Idade felina</a></li><li><a data-page="quiz" href="quiz.html">Quiz</a></li><li><a data-page="dicas" href="dicas.html">Dicas</a></li></ul></nav></div></header><main id="conteudo"><section class="secao agenda" id="agenda" aria-labelledby="titulo-agenda">
+        <div class="container agenda-conteudo">
+          <div class="cabecalho-secao">
+            <div>
+              <p class="etiqueta">Pequenos cuidados, muito amor</p>
+              <h1 id="titulo-agenda">Agenda de Cuidados</h1>
+            </div>
+            <p class="texto-secao">
+              Organize as tarefas que fazem parte da rotina do seu gato.
+            </p>
+          </div>
+
+          <button class="botao botao-nova-tarefa" id="adicionar-tarefa" type="button">
+            Adicionar nova tarefa
+          </button>
+
+          <form id="formulario-tarefa" class="formulario-tarefa" novalidate hidden>
+            <div class="campo">
+              <label for="titulo-tarefa">Título da tarefa</label>
+              <p class="ajuda-campo" id="ajuda-titulo-tarefa">Exemplo: Trocar a areia</p>
+              <input id="titulo-tarefa" name="titulo" type="text" maxlength="100" required aria-describedby="ajuda-titulo-tarefa erro-titulo-tarefa">
+              <p class="mensagem-erro" id="erro-titulo-tarefa"></p>
+            </div>
+
+            <div class="campo">
+              <label for="data-tarefa">Data <span>(opcional)</span></label>
+              <input id="data-tarefa" name="data" type="date" aria-describedby="erro-data-tarefa">
+              <p class="mensagem-erro" id="erro-data-tarefa"></p>
+            </div>
+
+            <div class="campo">
+              <label for="categoria-tarefa">Categoria</label>
+              <select id="categoria-tarefa" name="categoria" required aria-describedby="erro-categoria-tarefa">
+                <option value="">Selecione uma categoria</option>
+                <option value="alimentação">Alimentação</option>
+                <option value="higiene">Higiene</option>
+                <option value="saúde">Saúde</option>
+                <option value="brincadeira">Brincadeira</option>
+                <option value="outros">Outros</option>
+              </select>
+              <p class="mensagem-erro" id="erro-categoria-tarefa"></p>
+            </div>
+
+            <div class="acoes-formulario">
+              <button class="botao botao-formulario" id="botao-tarefa" type="submit">Criar tarefa</button>
+              <button class="botao-cancelar" id="cancelar-edicao-tarefa" type="button" hidden>Cancelar edição</button>
+            </div>
+          </form>
+
+          <p class="mensagem-status" id="mensagem-agenda" role="status" aria-live="polite"></p>
+
+          <div class="filtros-agenda" aria-label="Filtrar tarefas">
+            <button class="filtro ativo" type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+            <button class="filtro" type="button" data-filtro="pendentes" aria-pressed="false">Pendentes</button>
+            <button class="filtro" type="button" data-filtro="concluidas" aria-pressed="false">Concluídas</button>
+          </div>
+
+          <p class="estado-vazio" id="estado-vazio"></p>
+          <ul class="lista-tarefas" id="lista-tarefas" aria-label="Lista de tarefas de cuidado"></ul>
+        </div>
+</section>
+</main><footer class="rodape" id="rodape"><div class="container rodape-conteudo"><div><p class="marca rodape-marca"><span class="marca-icone" aria-hidden="true">♡</span>Mães de Gatos</p><p>Feito com carinho para celebrar os grandes amores em pequenos bigodes.</p><p class="assinatura">Desenvolvido por Kael J Productions</p></div><p class="rodape-final">Amor, respeito e muitos ronrons.</p></div></footer><script src="scripts/agenda.js" defer></script></body></html>
+
+
+
+
+
