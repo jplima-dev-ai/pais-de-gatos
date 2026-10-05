@@ -1,5 +1,5 @@
 (() => {
-const CHAVE_PERFIL = 'maesDeGatos.perfil';
+const CHAVE_PERFIL = 'paisDeGatos.cats';
 
 const formulario = document.querySelector('#formulario-perfil');
 const botaoPrincipal = formulario.querySelector('[type="submit"]');

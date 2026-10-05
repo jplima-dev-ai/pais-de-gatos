@@ -1,12 +1,12 @@
 const CACHE_NAME = 'pais-de-gatos-v2';
 const CACHE_PREFIX = 'pais-de-gatos-';
 const LOCAL_FILES = [
-  './index.html', './perfil.html', './agenda.html', './calculadora.html', './quiz.html', './dicas.html', './diario.html', './dados.html',
+  './index.html', './profile.html', './care-agenda.html', './cat-age-calculator.html', './quiz.html', './tips.html', './cat-journal.html', './my-data.html',
   './styles.css', './manifest.webmanifest', './service-worker.js', './scripts/pwa.js',
-  './scripts/perfil.js', './scripts/agenda.js', './scripts/calculadora.js', './scripts/quiz.js', './scripts/dicas.js', './scripts/diario.js', './scripts/dados.js',
-  './assets/icons/pais-de-gatos.svg', './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './assets/images/hero/mae-com-gato.webp', './assets/images/stories/gato-no-colo.webp',
-  './assets/images/cats/gato-preto-curioso.webp', './assets/images/cats/gato-laranja-brincando.webp', './assets/images/cats/gato-cinza-dormindo.webp'
+  './scripts/profile.js', './scripts/care-agenda.js', './scripts/cat-age-calculator.js', './scripts/quiz.js', './scripts/tips.js', './scripts/cat-journal.js', './scripts/my-data.js',
+  './assets/icons/brand-icon.svg', './assets/icons/icon-192.png', './assets/icons/icon-512.png',
+  './assets/images/hero/woman-with-cat.webp', './assets/images/stories/cat-on-lap.webp',
+  './assets/images/cats/curious-black-cat.webp', './assets/images/cats/playful-orange-cat.webp', './assets/images/cats/sleeping-gray-cat.webp'
 ];
 
 self.addEventListener('install', (evento) => {

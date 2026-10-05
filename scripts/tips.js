@@ -13,7 +13,7 @@ const dicas = [
   { id: 'brinquedos-variados', titulo: 'Varie os brinquedos', texto: 'Alterne brinquedos seguros para manter a curiosidade e evitar que a brincadeira fique repetitiva.', categoria: 'brincadeira' },
   { id: 'cantinho-seguro', titulo: 'Um cantinho seguro', texto: 'Ofereça um espaço confortável onde o gato possa descansar e se afastar quando quiser.', categoria: 'bem-estar' },
 ];
-const CHAVE_DICAS_FAVORITAS = 'maesDeGatos.dicasFavoritas';
+const CHAVE_DICAS_FAVORITAS = 'paisDeGatos.favorites';
 const mensagemDicas = document.querySelector('#mensagem-dicas');
 const estadoVazioDicas = document.querySelector('#estado-vazio-dicas');
 const listaDicas = document.querySelector('#lista-dicas');

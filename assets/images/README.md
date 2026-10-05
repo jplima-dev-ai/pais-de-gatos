@@ -39,9 +39,9 @@ Imagens preparadas para compartilhamento em redes sociais e prévias de links.
 Exemplos:
 
 ```text
-logo-maes-de-gatos.svg
-hero-mae-com-gato.webp
-gato-laranja-brincando.webp
+brand-logo.svg
+hero-woman-with-cat.webp
+playful-orange-cat.webp
 historia-adocao-ana.jpg
 icone-cuidado.svg
 preview-home-social.jpg
@@ -74,7 +74,7 @@ Use `alt` quando a imagem transmitir informação relevante para compreender o c
 Exemplo:
 
 ```html
-<img src="assets/images/cats/gato-laranja-brincando.webp" alt="Gato laranja brincando com uma bolinha de tecido">
+<img src="assets/images/cats/playful-orange-cat.webp" alt="Gato laranja brincando com uma bolinha de tecido">
 ```
 
 Não repita no `alt` informações que já estejam imediatamente disponíveis no texto ao redor. Evite começar com “imagem de” ou “foto de”, a menos que isso seja relevante.

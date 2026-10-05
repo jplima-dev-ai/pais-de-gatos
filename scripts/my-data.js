@@ -1,6 +1,6 @@
 (() => {
   const VERSAO_BACKUP = 1;
-  const CHAVES = ['maesDeGatos.perfil', 'maesDeGatos.agendaCuidados', 'maesDeGatos.dicasFavoritas', 'paisDeGatos.diario'];
+  const CHAVES = ['paisDeGatos.cats', 'paisDeGatos.careAgenda', 'paisDeGatos.favorites', 'paisDeGatos.catJournal'];
   const TEMPERAMENTOS = ['Carinhoso', 'Brincalhão', 'Tranquilo', 'Curioso', 'Independente'];
   const ATIVIDADES = ['Dormir', 'Brincar', 'Explorar a casa', 'Observar a janela', 'Ganhar carinho'];
   const CATEGORIAS_AGENDA = ['alimentação', 'higiene', 'saúde', 'brincadeira', 'outros'];
@@ -24,7 +24,7 @@
   }
 
   function nomeDaChave(chave) {
-    return { 'maesDeGatos.perfil': 'Perfil', 'maesDeGatos.agendaCuidados': 'Agenda', 'maesDeGatos.dicasFavoritas': 'Dicas favoritas', 'paisDeGatos.diario': 'Diário' }[chave];
+    return { 'paisDeGatos.cats': 'Perfil', 'paisDeGatos.careAgenda': 'Agenda', 'paisDeGatos.favorites': 'Dicas favoritas', 'paisDeGatos.catJournal': 'Diário' }[chave];
   }
 
   function dataExportacao() { return new Date().toISOString(); }
@@ -65,10 +65,10 @@
 
   function conteudoValido(chave, valor) {
     if (valor === null) return true;
-    if (chave === 'maesDeGatos.perfil') return typeof valor === 'object' && !Array.isArray(valor) && typeof valor.nome === 'string' && valor.nome.trim().length >= 2 && Number.isInteger(valor.idade) && valor.idade >= 0 && valor.idade <= 40 && TEMPERAMENTOS.includes(valor.temperamento) && ATIVIDADES.includes(valor.atividade) && typeof valor.apelido === 'string' && valor.apelido.length <= 40;
-    if (chave === 'maesDeGatos.agendaCuidados') { const ids = new Set(); return Array.isArray(valor) && valor.every((item) => item && typeof item === 'object' && typeof item.id === 'string' && item.id && !ids.has(item.id) && (ids.add(item.id), true) && typeof item.titulo === 'string' && item.titulo.trim().length > 0 && item.titulo.length <= 100 && typeof item.data === 'string' && dataValida(item.data) && CATEGORIAS_AGENDA.includes(item.categoria) && typeof item.concluida === 'boolean'); }
-    if (chave === 'maesDeGatos.dicasFavoritas') return Array.isArray(valor) && new Set(valor).size === valor.length && valor.every((item) => IDS_DICAS.includes(item));
-    if (chave === 'paisDeGatos.diario') { const ids = new Set(); return Array.isArray(valor) && valor.every((item) => item && typeof item === 'object' && typeof item.id === 'string' && item.id && !ids.has(item.id) && (ids.add(item.id), true) && dataDiarioValida(item.data) && CATEGORIAS_DIARIO.includes(item.categoria) && HUMORES_DIARIO.includes(item.humor) && ENERGIAS_DIARIO.includes(item.energia) && ALIMENTACOES_DIARIO.includes(item.alimentacao) && CAIXAS_DIARIO.includes(item.caixaAreia) && typeof item.observacao === 'string' && item.observacao.length <= 1000); }
+    if (chave === 'paisDeGatos.cats') return typeof valor === 'object' && !Array.isArray(valor) && typeof valor.nome === 'string' && valor.nome.trim().length >= 2 && Number.isInteger(valor.idade) && valor.idade >= 0 && valor.idade <= 40 && TEMPERAMENTOS.includes(valor.temperamento) && ATIVIDADES.includes(valor.atividade) && typeof valor.apelido === 'string' && valor.apelido.length <= 40;
+    if (chave === 'paisDeGatos.careAgenda') { const ids = new Set(); return Array.isArray(valor) && valor.every((item) => item && typeof item === 'object' && typeof item.id === 'string' && item.id && !ids.has(item.id) && (ids.add(item.id), true) && typeof item.titulo === 'string' && item.titulo.trim().length > 0 && item.titulo.length <= 100 && typeof item.data === 'string' && dataValida(item.data) && CATEGORIAS_AGENDA.includes(item.categoria) && typeof item.concluida === 'boolean'); }
+    if (chave === 'paisDeGatos.favorites') return Array.isArray(valor) && new Set(valor).size === valor.length && valor.every((item) => IDS_DICAS.includes(item));
+    if (chave === 'paisDeGatos.catJournal') { const ids = new Set(); return Array.isArray(valor) && valor.every((item) => item && typeof item === 'object' && typeof item.id === 'string' && item.id && !ids.has(item.id) && (ids.add(item.id), true) && dataDiarioValida(item.data) && CATEGORIAS_DIARIO.includes(item.categoria) && HUMORES_DIARIO.includes(item.humor) && ENERGIAS_DIARIO.includes(item.energia) && ALIMENTACOES_DIARIO.includes(item.alimentacao) && CAIXAS_DIARIO.includes(item.caixaAreia) && typeof item.observacao === 'string' && item.observacao.length <= 1000); }
     return false;
   }
 

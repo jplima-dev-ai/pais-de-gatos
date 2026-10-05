@@ -1,5 +1,5 @@
 (() => {
-  const CHAVE_DIARIO = 'paisDeGatos.diario';
+  const CHAVE_DIARIO = 'paisDeGatos.catJournal';
   const LIMITE_OBSERVACAO = 1000;
   const categorias = ['Rotina', 'Saúde', 'Alimentação', 'Comportamento', 'Medicação', 'Veterinário', 'Momento especial'];
   const humores = ['Tranquilo', 'Carinhoso', 'Brincalhão', 'Curioso', 'Assustado', 'Irritado', 'Mais quieto que o normal'];

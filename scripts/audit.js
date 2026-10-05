@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const raiz = path.resolve(__dirname, '..');
-const paginasEsperadas = ['index.html', 'perfil.html', 'agenda.html', 'calculadora.html', 'quiz.html', 'dicas.html', 'diario.html', 'dados.html'];
+const paginasEsperadas = ['index.html', 'profile.html', 'care-agenda.html', 'cat-age-calculator.html', 'quiz.html', 'tips.html', 'cat-journal.html', 'my-data.html'];
 const paginas = fs.readdirSync(raiz).filter((arquivo) => arquivo.endsWith('.html')).sort();
 const erros = [];
 
@@ -57,7 +57,7 @@ const paginasSet = new Set(paginasEsperadas);
 for (const pagina of paginas) {
   const html = ler(pagina);
   for (const href of atributos(html, 'href')) {
-    const correspondencia = href.match(/^(index|perfil|agenda|calculadora|quiz|dicas|diario|dados)\.html$/);
+    const correspondencia = href.match(/^(index|profile|care-agenda|cat-age-calculator|quiz|tips|cat-journal|my-data)\.html$/);
     if (correspondencia && !paginasSet.has(`${correspondencia[1]}.html`)) erros.push(`${pagina}: link de navegação sem página correspondente: ${href}`);
   }
 }
@@ -70,7 +70,7 @@ else {
     for (const icone of manifest.icons || []) if (!existeRelativo(icone.src)) erros.push(`ícone citado no manifest inexistente: ${icone.src}`);
   } catch (erro) { erros.push('manifest.webmanifest não contém JSON válido'); }
 }
-for (const recurso of ['service-worker.js', 'scripts/pwa.js', 'dados.html', 'scripts/dados.js']) if (!fs.existsSync(path.join(raiz, recurso))) erros.push(`recurso PWA ou Meus dados ausente: ${recurso}`);
+for (const recurso of ['service-worker.js', 'scripts/pwa.js', 'my-data.html', 'scripts/my-data.js']) if (!fs.existsSync(path.join(raiz, recurso))) erros.push(`recurso PWA ou Meus dados ausente: ${recurso}`);
 
 const serviceWorker = fs.existsSync(path.join(raiz, 'service-worker.js')) ? ler('service-worker.js') : '';
 for (const recurso of serviceWorker.matchAll(/['"](\.\/[^'"]+)['"]/g)) if (!existeRelativo(recurso[1])) erros.push(`arquivo listado no service worker inexistente: ${recurso[1]}`);

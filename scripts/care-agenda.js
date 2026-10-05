@@ -1,5 +1,5 @@
 (() => {
-const CHAVE_AGENDA = 'maesDeGatos.agendaCuidados';
+const CHAVE_AGENDA = 'paisDeGatos.careAgenda';
 const CATEGORIAS_TAREFA = ['alimentação', 'higiene', 'saúde', 'brincadeira', 'outros'];
 
 const formularioTarefa = document.querySelector('#formulario-tarefa');

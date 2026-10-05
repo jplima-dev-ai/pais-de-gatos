@@ -75,7 +75,7 @@ Também é recomendado testar cada página manualmente no navegador, com teclado
 Execute na raiz do projeto:
 
 ```text
-node scripts/auditoria.js
+node scripts/audit.js
 ```
 
 O script verifica páginas HTML esperadas, `main`, `h1`, idioma, títulos, meta descriptions, links e anchors locais, imagens, scripts, folhas CSS, IDs duplicados, referências ao antigo `script.js`, navegação, `aria-current`, manifesto, ícones, service worker e recursos de “Meus dados”. Ele não modifica arquivos e não usa dependências externas.
