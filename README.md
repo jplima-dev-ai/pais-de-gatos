@@ -2,6 +2,8 @@
 
 Pais de Gatos é um projeto de portfólio criado durante um curso de desenvolvimento web com VS Code, NVDA e agentes de IA. O objetivo é oferecer uma experiência acolhedora, útil e acessível para pessoas que cuidam e convivem com gatos.
 
+**Versão atual: 1.0.0 — primeira versão estável do projeto.**
+
 ## Objetivo
 
 Reunir ferramentas simples para organizar cuidados, registrar observações e celebrar a relação com os gatos, mantendo os dados no próprio navegador.
@@ -98,6 +100,12 @@ Como o projeto usa apenas arquivos estáticos, pode ser aberto localmente em um 
 - a Calculadora oferece uma estimativa educativa;
 - o Diário não diagnostica condições de saúde e não substitui avaliação veterinária;
 - ainda são necessários testes manuais completos com NVDA em diferentes navegadores.
+
+## Changelog
+
+### v1.0.0
+
+Primeira versão estável, com suporte a múltiplos gatos, Perfil, Agenda de Cuidados, Diário do Gato, Calculadora de Idade Felina, Quiz, Dicas e Favoritos, backup e importação locais, PWA com funcionamento offline e acessibilidade com foco em navegação por teclado e NVDA.
 
 ## Roadmap
 
