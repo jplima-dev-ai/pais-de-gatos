@@ -12,7 +12,15 @@
             </p>
           </div>
 
-          <form id="formulario-perfil" class="formulario-perfil" novalidate>
+          <div id="estado-sem-gatos" class="estado-vazio" hidden>
+            <p>Ainda não há gatos cadastrados.</p>
+            <button class="botao" id="adicionar-gato" type="button">Adicionar gato</button>
+          </div>
+          <p id="gato-ativo" class="mensagem-status"></p>
+          <div id="lista-gatos" class="lista-gatos"></div>
+          <button class="botao" id="adicionar-outro-gato" type="button">Adicionar outro gato</button>
+
+          <form id="formulario-perfil" class="formulario-perfil" novalidate hidden>
             <div class="campo">
               <label for="nome-gato">Nome do gato</label>
               <input id="nome-gato" name="nome" type="text" autocomplete="off" required aria-describedby="erro-nome-gato">
@@ -58,7 +66,7 @@
             </div>
 
             <div class="acoes-formulario">
-              <button class="botao botao-formulario" type="submit">Criar perfil</button>
+              <button class="botao botao-formulario" type="submit">Criar gato</button>
               <button class="botao-cancelar" id="botao-cancelar" type="button" hidden>Cancelar edição</button>
             </div>
           </form>

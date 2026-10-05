@@ -1,5 +1,7 @@
 (() => {
 const CHAVE_AGENDA = 'paisDeGatos.careAgenda';
+const CHAVE_GATOS = 'paisDeGatos.cats';
+const CHAVE_GATO_ATIVO = 'paisDeGatos.activeCat';
 const CATEGORIAS_TAREFA = ['alimentação', 'higiene', 'saúde', 'brincadeira', 'outros'];
 
 const formularioTarefa = document.querySelector('#formulario-tarefa');
@@ -14,6 +16,7 @@ const listaTarefas = document.querySelector('#lista-tarefas');
 const estadoVazio = document.querySelector('#estado-vazio');
 const tituloAgenda = document.querySelector('#titulo-agenda');
 const filtros = document.querySelectorAll('.filtro');
+const seletorGato = document.querySelector('#gato-agenda');
 
 const errosTarefa = {
   titulo: document.querySelector('#erro-titulo-tarefa'),
@@ -24,6 +27,25 @@ const errosTarefa = {
 let tarefas = [];
 let filtroAtual = 'todas';
 let idTarefaEmEdicao = null;
+let gatos = [];
+let gatoAtivo = null;
+
+function carregarGatos() {
+  try {
+    const dados = JSON.parse(localStorage.getItem(CHAVE_GATOS) || '[]');
+    gatos = Array.isArray(dados) ? dados.filter((gato) => gato && typeof gato.id === 'string' && gato.id && typeof gato.nome === 'string') : [];
+    const salvo = localStorage.getItem(CHAVE_GATO_ATIVO);
+    gatoAtivo = gatos.some((gato) => gato.id === salvo) ? salvo : (gatos[0]?.id || null);
+    if (gatoAtivo && salvo !== gatoAtivo) localStorage.setItem(CHAVE_GATO_ATIVO, gatoAtivo);
+  } catch (erro) { gatos = []; gatoAtivo = null; }
+  seletorGato.replaceChildren();
+  gatos.forEach((gato) => { const opcao = document.createElement('option'); opcao.value = gato.id; opcao.textContent = gato.apelido ? `${gato.nome} (${gato.apelido})` : gato.nome; seletorGato.append(opcao); });
+  seletorGato.value = gatoAtivo || '';
+  const semGatos = !gatoAtivo;
+  seletorGato.disabled = semGatos;
+  adicionarTarefa.disabled = semGatos;
+  estadoVazio.textContent = semGatos ? 'Cadastre um gato em Meu gato para criar e acompanhar tarefas.' : '';
+}
 
 function gerarIdTarefa() {
   if (window.crypto && typeof window.crypto.randomUUID === 'function') {
@@ -68,7 +90,7 @@ function tarefaValida(tarefa) {
     typeof tarefa.data === 'string' &&
     dataTarefaValida(tarefa.data) &&
     CATEGORIAS_TAREFA.includes(tarefa.categoria) &&
-    typeof tarefa.concluida === 'boolean'
+    typeof tarefa.concluida === 'boolean' && typeof tarefa.catId === 'string' && tarefa.catId.length > 0
   );
 }
 
@@ -171,15 +193,16 @@ function textoCategoria(categoria) {
 }
 
 function tarefasFiltradas() {
+  const doGato = tarefas.filter((tarefa) => tarefa.catId === gatoAtivo);
   if (filtroAtual === 'pendentes') {
-    return tarefas.filter((tarefa) => !tarefa.concluida);
+    return doGato.filter((tarefa) => !tarefa.concluida);
   }
 
   if (filtroAtual === 'concluidas') {
-    return tarefas.filter((tarefa) => tarefa.concluida);
+    return doGato.filter((tarefa) => tarefa.concluida);
   }
 
-  return tarefas;
+  return doGato;
 }
 
 function criarBotaoTarefa(texto, acao, tarefa) {
@@ -226,6 +249,10 @@ function criarElementoTarefa(tarefa) {
 }
 
 function atualizarEstadoVazio(lista) {
+  if (!gatoAtivo) {
+    estadoVazio.textContent = 'Cadastre um gato em Meu gato para criar e acompanhar tarefas.';
+    return;
+  }
   if (lista.length > 0) {
     estadoVazio.textContent = '';
     return;
@@ -391,6 +418,7 @@ formularioTarefa.addEventListener('submit', (evento) => {
   } else {
     const tarefa = {
       id: gerarIdTarefa(),
+      catId: gatoAtivo,
       titulo: tituloTarefa.value.trim(),
       data: dataTarefa.value,
       categoria: categoriaTarefa.value,
@@ -435,8 +463,16 @@ filtros.forEach((filtro) => {
 });
 
 carregarTarefas();
+carregarGatos();
 esconderFormularioTarefa();
 renderizarTarefas();
+
+seletorGato.addEventListener('change', () => {
+  gatoAtivo = seletorGato.value || null;
+  if (gatoAtivo) localStorage.setItem(CHAVE_GATO_ATIVO, gatoAtivo);
+  renderizarTarefas();
+  mensagemAgenda.textContent = `Agenda de ${gatos.find((gato) => gato.id === gatoAtivo)?.nome || 'gato'} exibida.`;
+});
 
 })();
 

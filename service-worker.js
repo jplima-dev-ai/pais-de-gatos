@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pais-de-gatos-v2';
+const CACHE_NAME = 'pais-de-gatos-v3';
 const CACHE_PREFIX = 'pais-de-gatos-';
 const LOCAL_FILES = [
   './index.html', './profile.html', './care-agenda.html', './cat-age-calculator.html', './quiz.html', './tips.html', './cat-journal.html', './my-data.html',
@@ -19,11 +19,11 @@ self.addEventListener('activate', (evento) => {
 
 self.addEventListener('fetch', (evento) => {
   if (evento.request.method !== 'GET' || new URL(evento.request.url).origin !== self.location.origin) return;
-  const recursoPermitido = LOCAL_FILES.some((arquivo) => new URL(arquivo, self.location.href).href === evento.request.url);
-  if (!recursoPermitido) return;
   if (evento.request.mode === 'navigate') {
     evento.respondWith(fetch(evento.request).then((rede) => { const copia = rede.clone(); caches.open(CACHE_NAME).then((cache) => cache.put(evento.request, copia)); return rede; }).catch(() => caches.match(evento.request).then((resposta) => resposta || caches.match('./index.html'))));
     return;
   }
+  const recursoPermitido = LOCAL_FILES.some((arquivo) => new URL(arquivo, self.location.href).href === evento.request.url);
+  if (!recursoPermitido) return;
   evento.respondWith(caches.match(evento.request).then((resposta) => resposta || fetch(evento.request).then((rede) => { const copia = rede.clone(); caches.open(CACHE_NAME).then((cache) => cache.put(evento.request, copia)); return rede; })));
 });

@@ -33,9 +33,13 @@ O projeto usa uma arquitetura multipágina tradicional. Cada ferramenta possui s
 
 Os dados de Perfil, Agenda, Dicas e Diário ficam armazenados somente no navegador da pessoa. O projeto não possui backend e não envia informações para servidores externos.
 
+## Vários gatos
+
+O Perfil permite cadastrar e selecionar vários gatos. A Agenda e o Diário usam o gato ativo e armazenam cada tarefa ou registro com seu respectivo `catId`; Calculadora, Quiz e Dicas continuam ferramentas globais. O gato ativo é mantido em `paisDeGatos.activeCat`.
+
 ## Meus dados e backups
 
-A página “Meus dados” permite exportar um backup JSON local e restaurá-lo depois. A importação valida o arquivo antes de alterar o armazenamento e solicita confirmação. O backup inclui os dados locais do Perfil, da Agenda, das Dicas favoritas e do Diário.
+A página “Meus dados” permite exportar um backup JSON local e restaurá-lo depois. A importação valida o formato de múltiplos gatos, os `catId` e as referências antes de alterar o armazenamento, e solicita confirmação. Backups anteriores à versão atual são rejeitados.
 
 ## PWA e funcionamento offline
 
@@ -101,4 +105,3 @@ Como o projeto usa apenas arquivos estáticos, pode ser aberto localmente em um 
 - realizar uma regressão completa com NVDA e teclado;
 - revisar continuamente contraste e responsividade;
 - evoluir as ferramentas sem comprometer a privacidade local;
-- avaliar melhorias futuras de exportação ou backup local sem enviar dados para terceiros.

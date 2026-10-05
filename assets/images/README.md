@@ -34,7 +34,7 @@ Imagens preparadas para compartilhamento em redes sociais e prévias de links.
 - Não use espaços, acentos ou caracteres especiais.
 - Prefira nomes descritivos e específicos.
 - Inclua a finalidade ou o contexto quando isso ajudar na identificação.
-- Use sufixos de variação quando necessário, como `-claro`, `-escuro`, `-mobile` ou `-quadrado`.
+- Use sufixes de variação quando necessário, como `-light`, `-dark`, `-mobile` ou `-square`.
 
 Exemplos:
 
@@ -42,9 +42,9 @@ Exemplos:
 brand-logo.svg
 hero-woman-with-cat.webp
 playful-orange-cat.webp
-historia-adocao-ana.jpg
-icone-cuidado.svg
-preview-home-social.jpg
+adoption-story-ana.jpg
+care-icon.svg
+home-social-preview.jpg
 ```
 
 ## Formatos preferidos

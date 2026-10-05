@@ -72,6 +72,10 @@ else {
 }
 for (const recurso of ['service-worker.js', 'scripts/pwa.js', 'my-data.html', 'scripts/my-data.js']) if (!fs.existsSync(path.join(raiz, recurso))) erros.push(`recurso PWA ou Meus dados ausente: ${recurso}`);
 
+for (const [arquivo, termo] of [['scripts/care-agenda.js', 'catId'], ['scripts/cat-journal.js', 'catId'], ['scripts/profile.js', 'paisDeGatos.activeCat']]) {
+  if (fs.existsSync(path.join(raiz, arquivo)) && !ler(arquivo).includes(termo)) erros.push(`${arquivo}: integração de múltiplos gatos ausente`);
+}
+
 const serviceWorker = fs.existsSync(path.join(raiz, 'service-worker.js')) ? ler('service-worker.js') : '';
 for (const recurso of serviceWorker.matchAll(/['"](\.\/[^'"]+)['"]/g)) if (!existeRelativo(recurso[1])) erros.push(`arquivo listado no service worker inexistente: ${recurso[1]}`);
 
