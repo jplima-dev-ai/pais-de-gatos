@@ -1,0 +1,31 @@
+{
+  "name": "Pais de Gatos",
+  "short_name": "Pais de Gatos",
+  "description": "Ferramentas acolhedoras para pessoas que cuidam e convivem com gatos.",
+  "lang": "pt-BR",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffaf3",
+  "theme_color": "#3d2528",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/pais-de-gatos.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

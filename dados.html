@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Exporte ou restaure os dados locais do projeto Pais de Gatos.">
+  <title>Meus dados | Pais de Gatos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+</head>
+<body>
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="cabecalho"><div class="container cabecalho-conteudo"><a class="marca" href="index.html" aria-label="Pais de Gatos, voltar ao início"><span class="marca-icone" aria-hidden="true">♡</span><span>Pais de Gatos</span></a><nav class="navegacao-principal" aria-label="Navegação principal"><ul><li><a data-page="inicio" href="index.html">Início</a></li><li><a data-page="perfil" href="perfil.html">Meu gato</a></li><li><a data-page="agenda" href="agenda.html">Agenda</a></li><li><a data-page="calculadora" href="calculadora.html">Idade felina</a></li><li><a data-page="quiz" href="quiz.html">Quiz</a></li><li><a data-page="dicas" href="dicas.html">Dicas</a></li><li><a data-page="diario" href="diario.html">Diário</a></li><li><a data-page="dados" href="dados.html" aria-current="page">Meus dados</a></li></ul></nav></div></header>
+  <main id="conteudo">
+    <section class="secao dados" aria-labelledby="titulo-dados">
+      <div class="container dados-conteudo">
+        <div class="cabecalho-secao"><div><p class="etiqueta">Controle local</p><h1 id="titulo-dados">Meus dados</h1></div><p class="texto-secao">Faça uma cópia dos dados salvos neste navegador ou restaure um backup anterior.</p></div>
+        <p class="aviso-dados">Os dados são processados somente neste navegador. Nenhuma informação é enviada para a internet.</p>
+        <div class="cartao-dados">
+          <h2>Exportar backup</h2>
+          <p>Gere um arquivo JSON com os dados locais do Perfil, da Agenda, das Dicas e do Diário.</p>
+          <button class="botao" id="exportar-dados" type="button">Exportar meus dados</button>
+        </div>
+        <div class="cartao-dados">
+          <h2>Restaurar backup</h2>
+          <p>Selecione um arquivo JSON exportado pelo Pais de Gatos. O conteúdo será conferido antes de substituir os dados atuais.</p>
+          <label for="arquivo-dados">Selecionar arquivo de backup</label>
+          <input id="arquivo-dados" class="entrada-arquivo-dados" type="file" accept="application/json,.json">
+          <div id="resumo-importacao" class="resumo-dados" hidden></div>
+          <button class="botao" id="confirmar-importacao" type="button" hidden>Restaurar dados</button>
+        </div>
+        <p class="mensagem-status" id="mensagem-dados" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+  <footer class="rodape" id="rodape"><div class="container rodape-conteudo"><div><p class="marca rodape-marca"><span class="marca-icone" aria-hidden="true">♡</span>Pais de Gatos</p><p>Feito com carinho para celebrar os grandes amores em pequenos bigodes.</p><p class="assinatura">Desenvolvido por Kael J Productions</p></div><p class="rodape-final">Amor, respeito e muitos ronrons.</p></div></footer>
+  <script src="scripts/dados.js" defer></script>
+  <script src="scripts/pwa.js" defer></script>
+</body>
+</html>

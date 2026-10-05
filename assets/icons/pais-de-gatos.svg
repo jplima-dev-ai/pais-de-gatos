@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="titulo-icone">
+  <title id="titulo-icone">Pais de Gatos</title>
+  <rect width="512" height="512" rx="112" fill="#3d2528"/>
+  <path d="M129 214 112 111l91 59c17-6 34-9 53-9s36 3 53 9l91-59-17 103c24 25 38 58 38 94 0 76-74 126-165 126S91 384 91 308c0-36 14-69 38-94Z" fill="#fffaf3"/>
+  <circle cx="190" cy="286" r="18" fill="#9f493d"/>
+  <circle cx="322" cy="286" r="18" fill="#9f493d"/>
+  <path d="M237 329c13 16 25 16 38 0M256 328v18" fill="none" stroke="#9f493d" stroke-linecap="round" stroke-width="10"/>
+  <path d="M150 324 89 313M150 345l-64 10M362 324l61-11M362 345l64 10" fill="none" stroke="#9f493d" stroke-linecap="round" stroke-width="8"/>
+</svg>

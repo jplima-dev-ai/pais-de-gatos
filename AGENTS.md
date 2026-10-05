@@ -2,7 +2,7 @@
 
 ## Projeto
 
-Estamos construindo um site sobre mães de gatos.
+Estamos construindo o site Pais de Gatos, voltado para pessoas que cuidam e convivem com gatos.
 
 O objetivo é criar uma experiência encantadora,
 acolhedora e acessível.
