@@ -1,50 +1,74 @@
-# Instruções para agentes de IA
+# Orientações para agentes de IA
 
 ## Projeto
 
-Estamos construindo o site Pais de Gatos, voltado para pessoas que cuidam e convivem com gatos.
+Pais de Gatos é uma aplicação web multipágina para pessoas que cuidam e convivem com gatos. O projeto prioriza uma experiência acolhedora, simples, privada e acessível.
 
-O objetivo é criar uma experiência encantadora,
-acolhedora e acessível.
+## Tecnologias e arquitetura
 
-Este projeto também será utilizado como portfólio.
+- use somente HTML, CSS e JavaScript puros;
+- preserve a arquitetura multipágina;
+- não adicione frameworks, bibliotecas, bundlers, backend, login ou nuvem;
+- mantenha o `styles.css` compartilhado quando não houver benefício concreto em separar estilos;
+- respeite o manifesto e o service worker existentes;
+- não altere chaves ou formatos do `localStorage` sem solicitação explícita.
 
-## Idioma
+## Dados e privacidade
 
-Todas as explicações destinadas ao proprietário
-do projeto devem ser fornecidas em português do Brasil.
+- os dados pertencem ao navegador e não devem ser enviados para serviços externos;
+- preserve as chaves `paisDeGatos.*` existentes;
+- trate `activeCat` como string crua no `localStorage`;
+- valide backups completos antes de alterar qualquer chave;
+- preserve rollback e feedback em falhas de persistência;
+- não remova dados existentes automaticamente sem requisito claro e documentado.
 
 ## Acessibilidade
 
-O desenvolvedor utiliza NVDA.
+O projeto é desenvolvido com foco em teclado e NVDA. Preserve:
 
-Sempre descreva alterações visuais de maneira textual.
+- HTML semântico, landmarks e hierarquia correta de títulos;
+- labels associados e controles nativos quando apropriado;
+- foco visível e previsível;
+- nomes acessíveis claros;
+- `aria-current`, `aria-live`, `aria-invalid` e `aria-pressed` somente quando necessários;
+- mensagens de erro e sucesso compreensíveis;
+- conteúdo dinâmico seguro, sem `innerHTML` para dados variáveis.
 
-Priorize HTML semântico, navegação por teclado,
-contraste adequado e compatibilidade com leitores de tela.
+Ao alterar a interface, descreva o impacto visual e o comportamento esperado para leitores de tela.
 
-## Regras de trabalho
+## Processo de mudança
 
-Antes de implementar uma mudança importante:
+Antes de uma mudança importante:
 
-1. Explique o que pretende fazer.
-2. Identifique os arquivos afetados.
-3. Aguarde aprovação quando solicitado.
-4. Implemente a alteração.
-5. Execute os testes disponíveis.
-6. Explique o resultado em linguagem simples.
+1. explique o objetivo e os arquivos envolvidos;
+2. confirme o escopo e preserve alterações existentes;
+3. faça a menor alteração suficiente;
+4. não refatore por preferência estética;
+5. execute as verificações disponíveis;
+6. informe o que foi testado e o que ainda exige teste manual.
 
-## Segurança
+Correções objetivas devem permanecer separadas de redesign, novas funcionalidades e melhorias futuras.
 
-Não execute comandos destrutivos sem autorização.
+## Testes
 
-Não apague arquivos sem explicar por que isso
-seria necessário.
+Quando aplicável, execute:
 
-Não inclua senhas ou credenciais no código.
+- `node --test tests/integrity.test.js`;
+- `node scripts/audit.js`;
+- `node --check` nos JavaScripts;
+- `git diff --check`.
 
-## Git
+Os testes devem verificar comportamento e, sempre que possível, exercitar o código real de produção. Não crie testes que apenas repitam uma implementação paralela sem proteger o fluxo verdadeiro.
 
-Prefira alterações pequenas e verificáveis.
+## Git e segurança
 
-Não descarte alterações existentes sem autorização.
+- não crie commit sem autorização explícita;
+- não crie tag, release ou faça push sem solicitação explícita;
+- não execute comandos destrutivos sem autorização;
+- não use `git reset --hard`, `git checkout --` ou equivalentes para descartar trabalho;
+- não inclua segredos, credenciais ou dados pessoais no código;
+- informe claramente arquivos criados, modificados ou removidos.
+
+## Idioma
+
+Explique o trabalho ao proprietário em português do Brasil, com linguagem clara e acessível para leitura com NVDA.

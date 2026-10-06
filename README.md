@@ -1,26 +1,45 @@
 # Pais de Gatos
 
-Pais de Gatos é um projeto de portfólio criado durante um curso de desenvolvimento web com VS Code, NVDA e agentes de IA. O objetivo é oferecer uma experiência acolhedora, útil e acessível para pessoas que cuidam e convivem com gatos.
+Aplicação web estática, acolhedora e acessível para pessoas que cuidam e convivem com gatos.
 
-**Versão atual: 1.0.1 — manutenção da primeira versão estável do projeto.**
+**Versão atual: 1.0.2.**
 
-## Objetivo
+A série 1.0 representa a primeira versão estável do projeto. Esta versão acrescenta a licença MIT e aprimora a documentação de portfólio, sem alterar a aplicação.
 
-Reunir ferramentas simples para organizar cuidados, registrar observações e celebrar a relação com os gatos, mantendo os dados no próprio navegador.
+## Produto
+
+Pais de Gatos reúne ferramentas locais para acompanhar cuidados, registrar momentos e explorar a relação especial entre pessoas e gatos. A experiência funciona diretamente no navegador, sem backend e sem envio de dados para servidores.
 
 ## Funcionalidades
 
-- Home com apresentação do projeto e acesso às ferramentas;
-- Perfil do Meu Gato;
-- Agenda de Cuidados;
-- Calculadora de Idade Felina;
-- Quiz de entretenimento;
-- Dicas e Favoritos;
-- Diário do Gato para acontecimentos e observações passadas.
+- Home com apresentação do produto, ferramentas e seção editorial “Momentos felinos”;
+- gerenciamento de múltiplos gatos, com gato ativo, edição e exclusão;
+- Agenda de Cuidados isolada por gato, com tarefas pendentes e concluídas;
+- Diário do Gato isolado por gato, com registros, filtros e pesquisa;
+- Calculadora de Idade Felina com estimativa educativa;
+- Quiz de entretenimento sobre formas de cuidar de gatos;
+- Dicas e Favoritos com filtros e persistência local;
+- Meus dados, com exportação e restauração de backup JSON versão 2;
+- PWA simples com cache local e suporte progressivo a funcionamento offline.
+
+## Demo
+
+O projeto pode ser executado localmente como site estático. Para testar o service worker, o funcionamento offline e os critérios de instalação da PWA, use `localhost`, HTTPS ou outro contexto seguro compatível.
 
 ## Arquitetura
 
-O projeto usa uma arquitetura multipágina tradicional. Cada ferramenta possui seu próprio documento HTML e, quando necessário, seu próprio arquivo JavaScript em `scripts/`. O `styles.css` é compartilhado por todas as páginas para preservar a identidade visual.
+O projeto usa arquitetura multipágina tradicional, sem SPA. Cada ferramenta possui uma página HTML própria e, quando necessário, um script específico em `scripts/`. O `styles.css` é compartilhado para manter a identidade visual.
+
+As páginas principais são:
+
+- `index.html` — Home;
+- `profile.html` — Perfil e gerenciamento de gatos;
+- `care-agenda.html` — Agenda de Cuidados;
+- `cat-age-calculator.html` — Calculadora de Idade Felina;
+- `quiz.html` — Quiz;
+- `tips.html` — Dicas e Favoritos;
+- `cat-journal.html` — Diário do Gato;
+- `my-data.html` — Meus dados.
 
 ## Tecnologias
 
@@ -28,96 +47,106 @@ O projeto usa uma arquitetura multipágina tradicional. Cada ferramenta possui s
 - CSS puro;
 - JavaScript puro;
 - `localStorage` para persistência local;
-- PWA simples com `manifest.webmanifest` e service worker;
+- `manifest.webmanifest` e service worker para a PWA;
+- APIs DOM seguras e `textContent` para conteúdo dinâmico;
 - nenhuma biblioteca, framework, bundler ou dependência externa.
 
-## Privacidade
+## Privacidade e dados locais
 
-Os dados de Perfil, Agenda, Dicas e Diário ficam armazenados somente no navegador da pessoa. O projeto não possui backend e não envia informações para servidores externos.
+Os dados permanecem no navegador. O projeto não possui backend, login, sincronização em nuvem ou telemetria própria.
 
-## Vários gatos
+As principais chaves atuais são:
 
-O Perfil permite cadastrar e selecionar vários gatos. A Agenda e o Diário usam o gato ativo e armazenam cada tarefa ou registro com seu respectivo `catId`; Calculadora, Quiz e Dicas continuam ferramentas globais. O gato ativo é mantido em `paisDeGatos.activeCat`.
+- `paisDeGatos.cats`;
+- `paisDeGatos.activeCat`;
+- `paisDeGatos.careAgenda`;
+- `paisDeGatos.catJournal`;
+- `paisDeGatos.favorites`.
 
-## Meus dados e backups
+Agenda e Diário usam `catId` para separar os dados de cada gato. Calculadora, Quiz e Dicas são ferramentas gerais.
 
-A página “Meus dados” permite exportar um backup JSON local e restaurá-lo depois. A importação valida o formato de múltiplos gatos, os `catId` e as referências antes de alterar o armazenamento, e solicita confirmação. Backups anteriores à versão atual são rejeitados.
+## Backup e restauração
 
-## PWA e funcionamento offline
+A página “Meus dados” exporta um JSON local com versão do formato, data de exportação, gatos, gato ativo, Agenda, Diário e favoritos.
 
-O projeto possui um manifesto e um service worker com cache versionado dos arquivos locais essenciais. Depois de carregados em um contexto compatível, os documentos, estilos, scripts, imagens e ícones básicos podem continuar disponíveis offline.
-
-Os recursos básicos também funcionam como site estático sem a instalação da PWA. A instalação e o service worker precisam ser testados em `localhost`, HTTPS ou outro contexto seguro compatível. Abrir `index.html` diretamente com `file://` não é suficiente para validar registro, instalação, atualização de cache ou funcionamento offline.
-
-Ainda não declaramos a PWA como instalável em todos os navegadores: essa confirmação depende de testes reais de manifesto, service worker, HTTPS, ícones e critérios de instalação de cada navegador.
+A importação valida o backup inteiro antes de modificar o armazenamento, verifica referências `catId`, aceita o formato real de `activeCat` como string crua e exige confirmação. Em caso de falha durante a restauração, o sistema tenta recuperar o snapshot anterior.
 
 ## Acessibilidade
 
 O projeto prioriza:
 
-- navegação por teclado;
+- navegação completa por teclado;
 - compatibilidade com NVDA;
 - link para pular ao conteúdo principal;
-- títulos e landmarks semânticos;
+- landmarks e hierarquia de títulos semânticos;
 - labels associados aos controles;
-- foco visível;
+- foco visível e previsível;
 - mensagens de erro e sucesso acessíveis;
 - uso controlado de `aria-current`, `aria-live`, `aria-invalid` e `aria-pressed`;
-- criação segura de conteúdo dinâmico com APIs DOM e `textContent`.
+- conteúdo dinâmico criado sem `innerHTML` com dados variáveis.
 
-## Testes
+Testes manuais com navegador, teclado e NVDA continuam importantes para confirmar foco, anúncios, formulários e comportamento em diferentes ambientes.
 
-As verificações de código podem ser executadas com:
+## PWA e funcionamento offline
 
-```text
-node --check scripts/nome-do-arquivo.js
-git diff --check
-```
+O manifesto e o service worker usam cache versionado de arquivos locais essenciais, removem versões antigas e aplicam network-first para navegação HTML com fallback para a Home.
 
-Também é recomendado testar cada página manualmente no navegador, com teclado e NVDA, incluindo foco, mensagens, formulários, persistência e responsividade.
+Os recursos básicos também funcionam como site estático sem instalação. Abrir `index.html` com `file://` não valida registro, instalação, atualização do cache ou funcionamento offline. Esses recursos precisam ser testados em `localhost`, HTTPS ou contexto compatível.
 
-### Auditoria automática
+## Execução local
+
+O projeto não exige instalação de dependências. Para uma execução simples, sirva a pasta por um servidor HTTP local e abra `index.html` no navegador.
+
+## Testes e auditoria
 
 Execute na raiz do projeto:
 
 ```text
+node --test tests/integrity.test.js
 node scripts/audit.js
+node --check service-worker.js
+git diff --check
 ```
 
-O script verifica páginas HTML esperadas, `main`, `h1`, idioma, títulos, meta descriptions, links e anchors locais, imagens, scripts, folhas CSS, IDs duplicados, referências ao antigo `script.js`, navegação, `aria-current`, manifesto, ícones, service worker e recursos de “Meus dados”. Ele não modifica arquivos e não usa dependências externas.
+Também é possível verificar todos os scripts:
 
-Essa auditoria não substitui testes com NVDA, inspeção visual, testes funcionais reais no navegador nem a validação da PWA em `localhost`, HTTPS ou outro contexto compatível.
+```text
+node --check scripts/nome-do-arquivo.js
+```
 
-## Execução local
+Os testes de integridade executam os fluxos de backup e exclusão com o código real em `node:vm`. A auditoria verifica páginas HTML, títulos, idioma, meta descriptions, links, anchors, imagens, scripts, CSS, IDs, navegação, `aria-current`, manifesto, ícones, service worker e recursos de “Meus dados”.
 
-Como o projeto usa apenas arquivos estáticos, pode ser aberto localmente em um navegador. Para uma experiência mais próxima de hospedagem, também pode ser servido por qualquer servidor HTTP local simples.
+As verificações automatizadas não substituem teste visual, teste funcional no navegador, teste manual com NVDA ou validação real da PWA.
 
-## Limitações atuais
+## Limitações
 
 - os dados dependem do armazenamento disponível no navegador;
 - não há sincronização entre dispositivos;
 - o Quiz é apenas entretenimento;
-- a Calculadora oferece uma estimativa educativa;
-- o Diário não diagnostica condições de saúde e não substitui avaliação veterinária;
-- ainda são necessários testes manuais completos com NVDA em diferentes navegadores.
+- a Calculadora oferece uma estimativa educativa e não substitui avaliação veterinária;
+- o Diário não diagnostica condições de saúde;
+- a instalação e o offline da PWA dependem do navegador e do contexto de publicação;
+- ainda são recomendados testes manuais completos com NVDA em diferentes navegadores.
 
 ## Changelog
 
+### v1.0.2
+
+- documentação reorganizada para apresentação profissional de portfólio;
+- licença MIT adicionada;
+- informações de arquitetura, privacidade, backup, acessibilidade, PWA e testes consolidadas.
+
 ### v1.0.1
 
-- Correções de integridade de backup e restauração.
-- Tratamento correto de `activeCat`.
-- Exclusão consistente de gatos e dados relacionados, com rollback.
-- Testes automatizados contra código real.
-- Preservação de dados legados que antes poderiam ser apagados automaticamente.
+- correções de integridade de backup e restauração;
+- tratamento correto de `activeCat`;
+- exclusão consistente de gatos e dados relacionados, com rollback;
+- testes automatizados contra código real.
 
 ### v1.0.0
 
-Primeira versão estável, com suporte a múltiplos gatos, Perfil, Agenda de Cuidados, Diário do Gato, Calculadora de Idade Felina, Quiz, Dicas e Favoritos, backup e importação locais, PWA com funcionamento offline e acessibilidade com foco em navegação por teclado e NVDA.
+Primeira versão estável, com suporte a múltiplos gatos, Perfil, Agenda de Cuidados, Diário do Gato, Calculadora de Idade Felina, Quiz, Dicas e Favoritos, backup e importação locais, PWA e acessibilidade com foco em teclado e NVDA.
 
-## Roadmap
+## Licença
 
-- ampliar a cobertura de testes automatizados;
-- realizar uma regressão completa com NVDA e teclado;
-- revisar continuamente contraste e responsividade;
-- evoluir as ferramentas sem comprometer a privacidade local;
+Este projeto está disponível sob a [licença MIT](LICENSE).
