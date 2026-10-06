@@ -2,7 +2,7 @@
 
 Pais de Gatos é um projeto de portfólio criado durante um curso de desenvolvimento web com VS Code, NVDA e agentes de IA. O objetivo é oferecer uma experiência acolhedora, útil e acessível para pessoas que cuidam e convivem com gatos.
 
-**Versão atual: 1.0.0 — primeira versão estável do projeto.**
+**Versão atual: 1.0.1 — manutenção da primeira versão estável do projeto.**
 
 ## Objetivo
 
@@ -102,6 +102,14 @@ Como o projeto usa apenas arquivos estáticos, pode ser aberto localmente em um 
 - ainda são necessários testes manuais completos com NVDA em diferentes navegadores.
 
 ## Changelog
+
+### v1.0.1
+
+- Correções de integridade de backup e restauração.
+- Tratamento correto de `activeCat`.
+- Exclusão consistente de gatos e dados relacionados, com rollback.
+- Testes automatizados contra código real.
+- Preservação de dados legados que antes poderiam ser apagados automaticamente.
 
 ### v1.0.0
 

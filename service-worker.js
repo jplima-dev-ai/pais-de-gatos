@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pais-de-gatos-v3';
+const CACHE_NAME = 'pais-de-gatos-v4';
 const CACHE_PREFIX = 'pais-de-gatos-';
 const LOCAL_FILES = [
   './index.html', './profile.html', './care-agenda.html', './cat-age-calculator.html', './quiz.html', './tips.html', './cat-journal.html', './my-data.html',
