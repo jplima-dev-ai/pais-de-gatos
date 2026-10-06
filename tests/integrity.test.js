@@ -5,6 +5,7 @@ const vm = require('node:vm');
 
 const dataScript = fs.readFileSync('scripts/my-data.js', 'utf8');
 const profileScript = fs.readFileSync('scripts/profile.js', 'utf8');
+const pwaScript = fs.readFileSync('scripts/pwa.js', 'utf8');
 const keys = ['paisDeGatos.cats', 'paisDeGatos.activeCat', 'paisDeGatos.careAgenda', 'paisDeGatos.catJournal', 'paisDeGatos.favorites'];
 const cat = { id: 'g1', nome: 'Luna', idade: 3, temperamento: 'Carinhoso', atividade: 'Brincar', apelido: '' };
 const task = { id: 't1', catId: 'g1', titulo: 'Trocar areia', data: '', categoria: 'higiene', concluida: false };
@@ -66,6 +67,28 @@ function criarAmbientePerfil(inicial, falhaNaGravacao = null) {
   return { storage: contexto.localStorage, elementos, excluir };
 }
 
+async function executarPwaComStorage(inicial) {
+  const storage = new Map(Object.entries(inicial));
+  let carregamento;
+  let registroServiceWorker = false;
+  const contexto = {
+    localStorage: {
+      get length() { return storage.size; },
+      key: (indice) => [...storage.keys()][indice] ?? null,
+      getItem: (chave) => storage.has(chave) ? storage.get(chave) : null,
+      setItem: (chave, valor) => storage.set(chave, String(valor)),
+      removeItem: (chave) => storage.delete(chave),
+    },
+    window: { addEventListener: (tipo, funcao) => { if (tipo === 'load') carregamento = funcao; } },
+    navigator: { serviceWorker: { register: () => { registroServiceWorker = true; return Promise.resolve(); } } },
+    console,
+  };
+  vm.runInNewContext(pwaScript, contexto, { filename: 'scripts/pwa.js' });
+  carregamento?.();
+  await new Promise((resolver) => setImmediate(resolver));
+  return { storage: Object.fromEntries(storage), registroServiceWorker };
+}
+
 test('round-trip real aceita activeCat cru e tarefa sem data', async () => { const ambiente = criarAmbiente(estadoValido()); const backup = ambiente.exportar(); assert.equal(backup.dados['paisDeGatos.activeCat'], 'g1'); keys.forEach((chave) => ambiente.storage.delete(chave)); const mensagem = await ambiente.importar(backup); assert.match(mensagem, /sucesso/); assert.deepEqual(ambiente.storage.snapshot(), estadoValido()); });
 test('instalação sem dados e valores nulos são aceitos pelo código real', async () => { const ambiente = criarAmbiente(); const backup = ambiente.exportar(); assert.deepEqual(backup.dados, Object.fromEntries(keys.map((chave) => [chave, null]))); const mensagem = await ambiente.importar(backup); assert.match(mensagem, /sucesso/); });
 test('arrays vazios são aceitos pelo código real', async () => { const dados = { 'paisDeGatos.cats': '[]', 'paisDeGatos.activeCat': null, 'paisDeGatos.careAgenda': '[]', 'paisDeGatos.catJournal': '[]', 'paisDeGatos.favorites': '[]' }; const mensagem = await criarAmbiente().importar(backupReal(dados)); assert.match(mensagem, /sucesso/); });
@@ -75,3 +98,4 @@ test('dados inválidos de gato e IDs duplicados são rejeitados', async () => { 
 test('exclusão real remove somente os dados do gato escolhido e mantém outro ativo', () => { const gato2 = { ...cat, id: 'g2', nome: 'Milo' }; const inicial = { 'paisDeGatos.cats': JSON.stringify([cat, gato2]), 'paisDeGatos.activeCat': 'g1', 'paisDeGatos.careAgenda': JSON.stringify([task, { ...task, id: 't2', catId: 'g2' }]), 'paisDeGatos.catJournal': JSON.stringify([journal, { ...journal, id: 'r2', catId: 'g2' }]) }; const ambiente = criarAmbientePerfil(inicial); ambiente.excluir('Luna'); const final = ambiente.storage.snapshot(); assert.deepEqual(JSON.parse(final['paisDeGatos.cats']).map((g) => g.id), ['g2']); assert.equal(final['paisDeGatos.activeCat'], 'g2'); assert.deepEqual(JSON.parse(final['paisDeGatos.careAgenda']).map((i) => i.catId), ['g2']); assert.deepEqual(JSON.parse(final['paisDeGatos.catJournal']).map((i) => i.catId), ['g2']); assert.match(ambiente.elementos.get('mensagem-formulario').textContent, /sucesso/); });
 test('exclusão real do último gato remove activeCat e dados relacionados', () => { const inicial = { 'paisDeGatos.cats': JSON.stringify([cat]), 'paisDeGatos.activeCat': 'g1', 'paisDeGatos.careAgenda': JSON.stringify([task]), 'paisDeGatos.catJournal': JSON.stringify([journal]) }; const ambiente = criarAmbientePerfil(inicial); ambiente.excluir('Luna'); const final = ambiente.storage.snapshot(); assert.deepEqual(JSON.parse(final['paisDeGatos.cats']), []); assert.equal(Object.prototype.hasOwnProperty.call(final, 'paisDeGatos.activeCat'), false); assert.deepEqual(JSON.parse(final['paisDeGatos.careAgenda']), []); assert.deepEqual(JSON.parse(final['paisDeGatos.catJournal']), []); });
 test('falha real de persistência não anuncia sucesso e restaura o snapshot', () => { const gato2 = { ...cat, id: 'g2', nome: 'Milo' }; const inicial = { 'paisDeGatos.cats': JSON.stringify([cat, gato2]), 'paisDeGatos.activeCat': 'g1', 'paisDeGatos.careAgenda': JSON.stringify([task, { ...task, id: 't2', catId: 'g2' }]), 'paisDeGatos.catJournal': JSON.stringify([journal, { ...journal, id: 'r2', catId: 'g2' }]) }; const ambiente = criarAmbientePerfil(inicial, 3); ambiente.excluir('Luna'); assert.deepEqual(ambiente.storage.snapshot(), inicial); assert.doesNotMatch(ambiente.elementos.get('mensagem-formulario').textContent, /sucesso/); assert.equal(ambiente.elementos.get('lista-gatos').children.length, 2); });
+test('pwa preserva dados legados e registra o Service Worker', async () => { const inicial = { 'maesDeGatos.perfil': '{"nome":"Luna"}', 'paisDeGatos.perfil': '{"nome":"Milo"}', 'paisDeGatos.agendaCuidados': '[{"titulo":"Consulta"}]', 'paisDeGatos.dicasFavoritas': '["agua-fresca"]', 'paisDeGatos.diario': '[{"observacao":"Hoje brincou"}]', 'paisDeGatos.cats': JSON.stringify([cat]) }; const resultado = await executarPwaComStorage(inicial); assert.deepEqual(resultado.storage, inicial); assert.equal(resultado.registroServiceWorker, true); });
